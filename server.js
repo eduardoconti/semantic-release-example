@@ -8,7 +8,22 @@ const routes = [{
       status: 200,
       description: 'app is running'
     }
-  }
+  },
+},
+{
+  method: 'GET',
+  path: '/users',
+  controller: () => {
+    return [{
+      id: 1,
+      name: 'Eduardo'
+    },
+    {
+      id: 2,
+      name: 'Alice'
+    }]
+  },
+
 }]
 
 const server = http.createServer(
@@ -40,9 +55,9 @@ const server = http.createServer(
           description: 'Route not found',
           type: 'about:blank'
         }),
-      );   
+      );
     }
-   
+
     res.end()
   },
 );
