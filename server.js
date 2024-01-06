@@ -13,7 +13,10 @@ const routes = [{
 {
   method: 'GET',
   path: '/users',
-  controller: () => {
+  controller: (req) => {
+    if(!req.headers.authorization){
+      throw new Error('Authentication failed')
+    }
     return [{
       id: 1,
       name: 'Eduardo'
@@ -33,15 +36,31 @@ const server = http.createServer(
     const route = routes.find((e) => e.method === method && path === e.path)
 
     if (route) {
-      const result = route.controller()
+      try {
+        const result = route.controller(req)
+  
+        res.writeHead(200, {
+          "Content-Type": "application/json",
+        });
+  
+        res.write(
+          JSON.stringify(result),
+        );
+        
+      } catch (error) {
+        res.writeHead(500, {
+          "Content-Type": "application/problem+json",
+        });
 
-      res.writeHead(200, {
-        "Content-Type": "application/json",
-      });
-
-      res.write(
-        JSON.stringify(result),
-      );
+        res.write(
+          JSON.stringify({
+            status: 500,
+            title: 'Internal server error',
+            description: error.message,
+            type: 'about:blank'
+          }),
+        );
+      }
 
     } else {
       res.writeHead(404, {
