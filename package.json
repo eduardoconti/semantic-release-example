@@ -14,11 +14,14 @@
     "@semantic-release/github": "^9.2.6",
     "@semantic-release/release-notes-generator": "^12.1.0"
   },
+  "repository": {
+    "url": "https://github.com/eduardoconti/semantic-release-example.git"
+  },
   "release": {
     "branches": [
       "main"
     ],
-    "repositoryUrl": "https://github.com/eduardoconti/semantic-release-example",
+    "repositoryUrl": "https://github.com/eduardoconti/semantic-release-example.git",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
