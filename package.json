@@ -1,0 +1,11 @@
+{
+  "name": "semantic-release",
+  "version": "1.0.0",
+  "description": "semantic release example",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --watch server.js"
+  },
+  "author": "eduardo conti",
+  "license": "ISC"
+}
